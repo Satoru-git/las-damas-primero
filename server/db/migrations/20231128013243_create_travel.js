@@ -6,9 +6,9 @@ exports.up = function (knex) {
   return knex.schema.createTable('travel', (table) => {
     table.foreign('customer_id').references('id').inTable('customer');
     table.string('hotel_name');
-    table.date('start_date');
-    table.date('end_date');
-    table.integer('number_people');
+    table.date('checkin');
+    table.integer('people');
+    table.integer('days');
   });
 };
 

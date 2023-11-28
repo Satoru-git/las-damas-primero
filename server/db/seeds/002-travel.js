@@ -9,23 +9,23 @@ exports.seed = async function (knex) {
     {
       customer_id: 3,
       hotel_name: 'hotel1',
-      start_date: '2023-11-28',
-      end_date: '2023-11-29',
-      number_people: 2,
+      checkin: '2023-11-28',
+      people: 2,
+      days: 2,
     },
     {
       customer_id: 4,
       hotel_name: 'hotel2',
-      start_date: '2023-11-25',
-      end_date: '2023-11-28',
-      number_people: 4,
+      checkin: '2023-11-26',
+      people: 4,
+      days: 3,
     },
     {
       customer_id: 2,
       hotel_name: 'hotel3',
-      start_date: '2023-11-23',
-      end_date: '2023-11-29',
-      number_people: 4,
+      checkin: '2023-11-29',
+      people: 2,
+      days: 6,
     },
   ]);
 };

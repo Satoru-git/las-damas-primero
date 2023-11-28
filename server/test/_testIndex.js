@@ -20,9 +20,8 @@ describe('Travel API', () => {
   describe('GET / data', () => {
     it('データベースの全データを返す', async () => {
       const res = await request.get('/data');
-      console.log(res);
       expect(res).to.have.status(200);
-      expect(res.body).to.be.equal(JSON.parse(res.body));
+      expect(res.body.length).to.be.equal(4);
     });
   });
 });

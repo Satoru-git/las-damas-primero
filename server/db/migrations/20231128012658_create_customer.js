@@ -6,6 +6,7 @@ exports.up = function (knex) {
   return knex.schema.createTable('customer', (table) => {
     table.increments('id').primary();
     table.string('customer_id');
+    table.string('password');
     table.string('salt');
     table.string('hashed_password');
   });
