@@ -7,4 +7,5 @@ export interface Hotel {
   access: string;
   latitude: number;
   longitude: number;
+  [key: string]: any;
 }

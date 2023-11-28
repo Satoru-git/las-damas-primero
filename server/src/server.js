@@ -1,6 +1,6 @@
 const express = require('express');
 const knex = require('../db');
-const cors = require('cors');
+// const cors = require('cors');
 // const testSend = [
 // {
 // id: 1,
@@ -18,6 +18,7 @@ const setUpServer = () => {
   const app = express();
 
   app.use(express.json());
+  // app.use(cors());
 
   // app.get('/', express.static('client/dist'));
 

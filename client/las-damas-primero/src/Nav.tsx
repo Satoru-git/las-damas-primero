@@ -5,6 +5,7 @@ type Input = {
   checkin: Date;
   people: number;
   days: number;
+  prefecture: string;
 };
 
 type Props = {
@@ -17,6 +18,7 @@ const Nav: React.FC<Props> = ({ setHotelData }) => {
     checkin: new Date(),
     people: 0,
     days: 0,
+    prefecture: '北海道',
   });
 
   function handleInput(e) {
@@ -67,7 +69,13 @@ const Nav: React.FC<Props> = ({ setHotelData }) => {
         </div>
         <div>
           <label>県</label>
-          <select name="prefecture" id="prefecture">
+          <select
+            name="prefecture"
+            id="prefecture"
+            onChange={(e) => {
+              setInput({ ...input, prefecture: e.target.value });
+            }}
+          >
             <option value="北海道">北海道</option>
             <option value="青森県">青森県</option>
             <option value="岩手県">岩手県</option>
