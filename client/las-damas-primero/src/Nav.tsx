@@ -1,20 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Hotel } from './globals';
 
 type Input = {
   checkin: Date;
   people: number;
   days: number;
-  dinner: boolean;
-  breakfast: boolean;
 };
 
-function Nav() {
+type Props = {
+  // hotelData: Hotel;
+  setHotelData: React.Dispatch<React.SetStateAction<Hotel[]>>;
+};
+
+const Nav: React.FC<Props> = ({ setHotelData }) => {
   const [input, setInput] = useState<Input>({
     checkin: new Date(),
     people: 0,
     days: 0,
-    dinner: false,
-    breakfast: false,
   });
 
   function handleInput(e) {
@@ -26,7 +28,11 @@ function Nav() {
     };
     fetch('http://localhost:8000/data', requestOptions)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        setHotelData(data);
+        console.log(data);
+      });
   }
 
   return (
@@ -59,28 +65,11 @@ function Nav() {
             }}
           />
         </div>
-        <div>
-          <label>夕食</label>
-          <input
-            type="checkbox"
-            onChange={(e) => {
-              setInput({ ...input, dinner: Boolean(e.target.value) });
-            }}
-          />
-        </div>
-        <div>
-          <label>朝食</label>
-          <input
-            type="checkbox"
-            onChange={(e) => {
-              setInput({ ...input, breakfast: Boolean(e.target.value) });
-            }}
-          />
-        </div>
+
         <input type="submit" value="検索" onClick={handleInput} />
       </form>
     </nav>
   );
-}
+};
 
 export default Nav;
