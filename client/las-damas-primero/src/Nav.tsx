@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 
 type Input = {
   checkin: Date;
@@ -9,48 +9,73 @@ type Input = {
 };
 
 function Nav() {
-  const tempInput = useRef<Input>({
+  const [input, setInput] = useState<Input>({
     checkin: new Date(),
     people: 0,
     days: 0,
     dinner: false,
     breakfast: false,
   });
-  const [input, setInput] = useState<Input>();
 
-  useEffect(() => {}, [input]);
-
-  function handleInput() {
-    console.log('hahaha');
+  function handleInput(e) {
+    e.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ input }),
+    };
+    fetch('http://localhost:8000/data', requestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
 
   return (
     <nav>
-      <form>
+      <form onSubmit={handleInput}>
         <div>
           <label>CheckIn</label>
           <input
             type="date"
-            onChange={(e) =>
-              (tempInput.current.checkin = new Date(e.target.value))
-            }
+            onChange={(e) => {
+              setInput({ ...input, checkin: new Date(e.target.value) });
+            }}
           />
         </div>
         <div>
           <label>人数</label>
-          <input type="number" />
+          <input
+            type="number"
+            onChange={(e) => {
+              setInput({ ...input, people: Number(e.target.value) });
+            }}
+          />
         </div>
         <div>
           <label>宿泊日数</label>
-          <input type="number" />
+          <input
+            type="number"
+            onChange={(e) => {
+              setInput({ ...input, days: Number(e.target.value) });
+            }}
+          />
         </div>
         <div>
           <label>夕食</label>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={(e) => {
+              setInput({ ...input, dinner: Boolean(e.target.value) });
+            }}
+          />
         </div>
         <div>
           <label>朝食</label>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={(e) => {
+              setInput({ ...input, breakfast: Boolean(e.target.value) });
+            }}
+          />
         </div>
         <input type="submit" value="検索" onClick={handleInput} />
       </form>
