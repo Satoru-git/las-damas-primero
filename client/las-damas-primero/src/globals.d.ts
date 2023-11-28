@@ -1,7 +1,10 @@
 export interface Hotel {
-  id: number;
-  name: string;
-  pictureUrl: string;
+  hotelName: string;
+  hotelImageUrl: string;
+  hotelMapImageUrl: string;
   mapUrl: string;
-  youtubeUrl: string;
+  YoutubeUrl: string;
+  access: string;
+  latitude: number;
+  longitude: number;
 }
