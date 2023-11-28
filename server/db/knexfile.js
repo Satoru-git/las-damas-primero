@@ -13,10 +13,10 @@ module.exports = {
       database: process.env.POSTGRES_DB || 'las_damas_primero',
     },
     migrations: {
-      directory: './db/migrations',
+      directory: './migrations',
     },
     seeds: {
-      directory: './db/seeds',
+      directory: './seeds',
     },
   },
 

@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "migrate": "knex migrate:latest",
-    "makeMigration": "knex migrate:make",
-    "seed": "knex seed:run",
-    "makeSeed": "knex seed:make",
-    "start": "nodemon ./src/index.js"
+    "start": "nodemon ./src/index.js",
+    "migrate": "knex migrate:latest --knexfile ./db/knexfile.js",
+    "makeMigration": "knex migrate:make --knexfile ./db/knexfile.js",
+    "seed": "knex seed:run --knexfile ./db/knexfile.js",
+    "makeSeed": "knex seed:make --knexfile ./db/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile ./db/knexfile.js "
   },
   "keywords": [],
   "author": "",

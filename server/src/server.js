@@ -6,7 +6,10 @@ const setUpServer = () => {
   app.use(express.json());
   app.get('/data', async (req, res) => {
     const customerList = await knex('customer').select();
-    res.status(200).send(JSON.stringify(customerList));
+    res.status(200).send(customerList);
+  });
+  app.post('/data', (req, res) => {
+    res.status(200).send(req.body);
   });
 
   return app;
