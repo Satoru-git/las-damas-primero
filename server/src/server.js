@@ -19,9 +19,7 @@ const setUpServer = () => {
   const app = express();
   app.use(express.json());
 
-  app.get('/', async (req, res) => {
-    res.send('ルートへようこそ');
-  });
+  //   app.get('/', express.static('client/dist'));
 
   app.get('/data', async (req, res) => {
     const customerList = await knex('customer').select();
