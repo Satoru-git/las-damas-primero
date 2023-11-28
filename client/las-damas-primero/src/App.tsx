@@ -1,10 +1,17 @@
 // import React from 'react'
 import './App.css';
+import Nav from './Nav';
+import Header from './Header';
+import MainBody from './MainBody';
+import Footer from './Footer';
 
 function App() {
   return (
     <>
-      <div>React Start!</div>
+      <Header />
+      <Nav />
+      <MainBody />
+      <Footer />
     </>
   );
 }
