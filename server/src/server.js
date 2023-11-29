@@ -1,6 +1,50 @@
 const express = require('express');
 const knex = require('../db');
 const cors = require('cors');
+// const passport = require('passport');
+// const LocalStrategy = require('passport-local');
+// const cookieSession = require('cookie-session');
+// const secret = "secretCuisine123"
+
+/////////////////////////////
+// passport.use(
+//   new LocalStrategy(async function verify(username, password, cb) {
+//     try {
+//       const customerList = await knex('customer').select();
+//       const user = customerList.custoemer_id === username;
+
+//       if (!user) {
+//         return cb(null, false);
+//       }
+//       if (user.passoword !== password) {
+//         return cb(null, false);
+//       }
+
+//       return cb(null, user);
+//     } catch (err) {
+//       return cb(err);
+//     }
+//   })
+// );
+
+// passport.serializeUser((user, cb) => {
+//   cb(null, user.username);
+// });
+
+// // ユニークユーザー識別子からユーザーデータを取り出す
+// passport.deserializeUser((username, cb) => {
+//   const user = DB_USER.find((v) => {
+//     return v.username === username;
+//   });
+
+//   if (!user) {
+//     return cb(`ERROR : NO USERNAME -> ${username}`);
+//   }
+
+//   return cb(null, user);
+// });
+/////////////////////////////
+
 // const testSend = [
 // {
 // id: 1,
@@ -16,11 +60,14 @@ const cors = require('cors');
 
 const setUpServer = () => {
   const app = express();
-
   app.use(express.json());
-  app.use(cors());
-
   // app.get('/', express.static('client/dist'));
+
+  // app.use(cookieSession({
+  //   name:"session",
+  //   keys:[secret],
+  //   maxAge:24*60*60*1000
+  // }))
 
   app.get('/data', async (req, res) => {
     const customerList = await knex('customer').select();
@@ -46,8 +93,10 @@ const setUpServer = () => {
               YoutubeUrl: `https://www.youtube.com/results?search_query=${hotelBasicInfo.hotelName}%E3%80%80食事`,
               hotelMapImageUrl: hotelBasicInfo.hotelMapImageUrl,
               access: hotelBasicInfo.access,
-              latitude: hotelBasicInfo.latitude * 0.0002778,
-              longitude: hotelBasicInfo.longitude * 0.0002778,
+              position: {
+                latitude: hotelBasicInfo.latitude * 0.0002778,
+                longitude: hotelBasicInfo.longitude * 0.0002778,
+              },
             };
           });
 
