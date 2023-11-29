@@ -13,7 +13,8 @@
     "seed": "knex seed:run --knexfile ./db/knexfile.js",
     "makeSeed": "knex seed:make --knexfile ./db/knexfile.js",
     "rollback": "knex migrate:rollback --knexfile ./db/knexfile.js ",
-    "build": "npm install && npm run migrate && npm run seed"
+    "build": "npm install && npm run migrate && npm run seed",
+    "git": "git add . && npx co-commit"
   },
   "keywords": [],
   "author": "",
