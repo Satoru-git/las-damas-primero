@@ -2,7 +2,7 @@ function Header() {
   return (
     <>
       <header>
-        <a href="/">Header</a>
+        <a href="/">Las Damas Primero</a>
       </header>
     </>
   );
