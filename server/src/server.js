@@ -1,6 +1,6 @@
 const express = require('express');
 const knex = require('../db');
-// const cors = require('cors');
+const cors = require('cors');
 // const testSend = [
 // {
 // id: 1,
@@ -18,7 +18,7 @@ const setUpServer = () => {
   const app = express();
 
   app.use(express.json());
-  // app.use(cors());
+  app.use(cors());
 
   // app.get('/', express.static('client/dist'));
 
@@ -28,12 +28,13 @@ const setUpServer = () => {
   });
 
   app.post('/data', async (req, res) => {
-    const rakutenApiKey = 1042996976349696385;
+    const rakutenApiKey = '1042996976349696385';
     const hotelData = await fetch(
       `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=岐阜&applicationId=${rakutenApiKey}`
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         const hotelArr = data.hotels
           .map((obj) => obj.hotel)
           .map((obj) => {

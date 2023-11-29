@@ -9,13 +9,13 @@ const MainBody: React.FC<mainProps> = ({ hotelData }) => {
     <main>
       <ul>
         {hotelData.map((item, index) => (
-          <>
+          <div className="hotel_card">
             {Object.keys(item).map((key) => (
-              <li className="hotel_card" key={`${index}_${key}`}>
+              <li key={`${index}_${key}`}>
                 {key}:{item[key]}
               </li>
             ))}
-          </>
+          </div>
         ))}
       </ul>
     </main>
