@@ -17,7 +17,11 @@ function App() {
           <MainBody hotelData={hotelData} />
         </>
       ) : (
-        <div></div>
+        <>
+          <div>
+            <h1></h1>
+          </div>
+        </>
       )}
       <Footer />
     </>

@@ -14,6 +14,10 @@ type Props = {
 };
 
 const Nav: React.FC<Props> = ({ setHotelData }) => {
+  const URL =
+    process.env.NODE_ENV === 'production'
+      ? '/data'
+      : 'http://localhost:8000/data';
   const [input, setInput] = useState<Input>({
     checkin: new Date(),
     people: 0,
@@ -29,7 +33,7 @@ const Nav: React.FC<Props> = ({ setHotelData }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ input }),
     };
-    fetch('http://localhost:8000/data', requestOptions)
+    fetch(URL, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -44,6 +48,7 @@ const Nav: React.FC<Props> = ({ setHotelData }) => {
           <label>CheckIn</label>
           <input
             type="date"
+            className="checkin"
             onChange={(e) => {
               setInput({ ...input, checkin: new Date(e.target.value) });
             }}
@@ -125,7 +130,12 @@ const Nav: React.FC<Props> = ({ setHotelData }) => {
             <option value="沖縄県">沖縄県</option>
           </select>
         </div>
-        <input type="submit" value="検索" onClick={handleInput} />
+        <input
+          type="submit"
+          className="btn"
+          value="検索"
+          onClick={handleInput}
+        />
       </form>
     </nav>
   );

@@ -9,7 +9,7 @@
 }
 
 header {
-  padding: 0px 4% 10px 100px;
+  padding: 10px 4% 10px 40px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -17,28 +17,77 @@ header {
   display: flex;
   align-items: center;
   left: 0;
-  height: 40px;
+  height: 50px;
+  font-size: 1.5em;
 }
 
 nav {
   position: fixed;
   height: 30px;
-  top: 40px;
-  left: 0px;
-  padding-left: 10px; /* 200px */
+  top: 15px;
+  left: 300px;
+  padding-left: 70px; /* 200px */
   width: 100%;
   background-color: #343434;
-  color: white;
+  color: #c9c1df;
 }
 nav div label {
   margin-right: 5px;
 }
 nav div input {
   margin-right: 40px;
-  width: 120px;
+  width: 40px;
   height: 22px;
+  background: #eee;
+}
+.checkin {
+  width: 130px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  /* margin: 0 auto; */
+  padding: 0em 2em;
+  border: 1px solid #2589d0;
+  border-radius: var(--radius);
+  background-color: #fff;
+  color: #c9c1df;
+  font-weight: bold;
+  cursor: pointer;
+  /* font-size: 1em; */
 }
 
+.btn:hover {
+  color: #2589d0;
+}
+
+.btn:active {
+  -webkit-transform: translate(0, 2px);
+  -moz-transform: translate(0, 2px);
+  transform: translate(0, 2px);
+  border-bottom: none;
+}
+
+nav div select {
+  margin-right: 40px;
+  width: 70px;
+  height: 22px;
+}
+img {
+  height: 300px;
+  border-radius: var(--radius);
+}
+iframe {
+  height: 300px;
+  border-radius: var(--radius);
+}
+/* main {
+  place-items: start;
+  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.562);
+} */
 a {
   text-decoration: none;
   color: #4b4b4b;
@@ -56,4 +105,51 @@ form {
 
 .hotel_card {
   display: flex;
+}
+
+.hotel_card {
+  display: grid;
+  grid-template-areas:
+    'idx hotelName hotelName youtubeUrl youtubeUrl'
+    'idx hotelImage hotelImage position hotelMapImage'
+    'idx access access access access';
+  background-color: rgba(52, 52, 52, 0.7);
+  margin: 1rem;
+  padding: 1rem;
+  gap: 1rem;
+  overflow: scroll;
+  border-radius: var(--radius);
+}
+.idx {
+  grid-area: idx;
+  color: antiquewhite;
+}
+.hotel_name {
+  grid-area: hotelName;
+  text-align: left;
+  color: antiquewhite;
+}
+.hotel_img {
+  grid-area: hotelImage;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--radius);
+}
+.youtubeUrl {
+  grid-area: youtubeUrl;
+  background-color: #223e46;
+  border-radius: var(--radius);
+}
+.position {
+  grid-area: position;
+  max-width: 100%;
+  max-height: 100%;
+}
+.access {
+  grid-area: access;
+}
+.hotel_map_img {
+  grid-area: hotelMapImage;
+  max-width: 100%;
+  max-height: 100%;
 }
