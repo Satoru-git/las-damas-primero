@@ -23,11 +23,16 @@ a:hover {
 }
 
 body {
+  padding-top: 50px;
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  height: 100vh;
+  background: url(https://metropolisjapan.com/wp-content/uploads/2017/11/Lady-First-cover-image-1.jpg)
+    no-repeat center;
+  background-size: cover;
 }
 
 h1 {

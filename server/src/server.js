@@ -20,6 +20,7 @@ const setUpServer = () => {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         const hotelArr = data.hotels
           .map((obj) => obj.hotel)
           .map((obj) => {
