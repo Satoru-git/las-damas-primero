@@ -14,7 +14,6 @@ function App() {
       <Nav setHotelData={setHotelData} />
       {hotelData.length !== 0 ? (
         <>
-          {hotelData}
           <MainBody hotelData={hotelData} />
         </>
       ) : (
