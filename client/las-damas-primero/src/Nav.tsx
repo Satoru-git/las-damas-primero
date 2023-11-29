@@ -25,7 +25,7 @@ const Nav: React.FC<Props> = ({ setHotelData }) => {
     prefecture: '北海道',
   });
 
-  function handleInput(e) {
+  function handleInput(e: React.MouseEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log(input);
     const requestOptions = {
@@ -130,12 +130,9 @@ const Nav: React.FC<Props> = ({ setHotelData }) => {
             <option value="沖縄県">沖縄県</option>
           </select>
         </div>
-        <input
-          type="submit"
-          className="btn"
-          value="検索"
-          onClick={handleInput}
-        />
+        <button type="submit" className="btn">
+          検索
+        </button>
       </form>
     </nav>
   );
