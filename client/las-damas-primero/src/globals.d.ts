@@ -5,7 +5,9 @@ export interface Hotel {
   mapUrl: string;
   YoutubeUrl: string;
   access: string;
-  latitude: number;
-  longitude: number;
+  position: {
+    latitude: number;
+    longitude: number;
+  };
   [key: string]: any;
 }

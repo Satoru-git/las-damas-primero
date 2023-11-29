@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Nav from './Nav';
 import Header from './Header';
@@ -17,7 +17,11 @@ function App() {
           <MainBody hotelData={hotelData} />
         </>
       ) : (
-        <div></div>
+        <>
+          <div>
+            <h1></h1>
+          </div>
+        </>
       )}
       <Footer />
     </>
