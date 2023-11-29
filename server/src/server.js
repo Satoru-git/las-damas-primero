@@ -7,6 +7,7 @@ const setUpServer = () => {
   app.use(cors());
   app.use(express.json());
   app.use(cors());
+  app.use('/', express.static('../../../client/las-damas-primero/dist'));
 
   app.get('/data', async (req, res) => {
     const customerList = await knex('customer').select();
