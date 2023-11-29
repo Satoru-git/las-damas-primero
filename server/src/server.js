@@ -1,13 +1,25 @@
 const express = require('express');
 const knex = require('../db');
+const path = require('path');
+// const knex = require('../../client/las-damas-primero/dist');
+// const knex = require('../public');
 const cors = require('cors');
 
 const setUpServer = () => {
   const app = express();
-  app.use(cors());
   app.use(express.json());
   app.use(cors());
-  app.use('/', express.static('../../../client/las-damas-primero/dist'));
+  // app.use('/', express.static('../../client/las-damas-primero/dist'));
+  // app.use('/', express.static('public'));
+  app.use(
+    express.static(path.join(__dirname, '../../client/las-damas-primero/dist'))
+  );
+
+  app.get('*', (req, res) => {
+    res.sendFile(
+      path.join(__dirname, '../../client/las-damas-primero/dist/index.html')
+    );
+  });
 
   app.get('/data', async (req, res) => {
     const customerList = await knex('customer').select();
