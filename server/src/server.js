@@ -27,9 +27,9 @@ const setUpServer = () => {
   });
 
   app.post('/data', async (req, res) => {
-    const rakutenApiKey = 1042996976349696385;
+    const rakutenApiKey = '1042996976349696385';
     const hotelData = await fetch(
-      `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=岐阜&applicationId=${rakutenApiKey}`
+      `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.prefecture}&applicationId=${rakutenApiKey}`
     )
       .then((res) => res.json())
       .then((data) => {
