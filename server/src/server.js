@@ -28,9 +28,10 @@ const setUpServer = () => {
   });
 
   app.post('/data', async (req, res) => {
+    console.log(req.body.prefecture);
     const rakutenApiKey = '1042996976349696385';
     const hotelData = await fetch(
-      `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.prefecture}&applicationId=${rakutenApiKey}`
+      `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${rakutenApiKey}`
     )
       .then((res) => res.json())
       .then((data) => {
