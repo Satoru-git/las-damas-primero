@@ -40,7 +40,7 @@ module.exports = {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './db/migrations',
+      directory: './migrations',
     },
 
     // pool: {
@@ -48,6 +48,6 @@ module.exports = {
     //   max: 10
     // },
 
-    seeds: { directory: './db/seeds' },
+    seeds: { directory: './seeds' },
   },
 };
