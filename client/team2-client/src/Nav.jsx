@@ -4,7 +4,7 @@ const Nav = ({ setHotelData }) => {
   const URL =
     process.env.NODE_ENV === 'production'
       ? '/data'
-      : 'http://localhost:8000/data';
+      : 'http://localhost:8000/api/v1/data';
   const [input, setInput] = useState({
     checkin: new Date(),
     people: 0,
