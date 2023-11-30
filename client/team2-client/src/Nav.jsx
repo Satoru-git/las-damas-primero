@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import hotelsApi from './api/hotelsApi';
 
 const Nav = ({ setHotelData }) => {
-  const URL =
-    process.env.NODE_ENV === 'production'
-      ? '/data'
-      : 'http://localhost:8000/api/v1/data';
+  // const URL =
+  //   process.env.NODE_ENV === 'production'
+  //     ? '/data'
+  //     : 'http://localhost:8000/api/v1/data';
   const [input, setInput] = useState({
     checkin: new Date(),
     people: 0,
@@ -12,20 +13,24 @@ const Nav = ({ setHotelData }) => {
     prefecture: '北海道',
   });
 
-  function handleInput(e) {
+  async function handleInput(e) {
     e.preventDefault();
-    console.log(input);
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ input }),
-    };
-    fetch(URL, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setHotelData(data);
-      });
+    // console.log(input);
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ input }),
+    // };
+    // fetch(URL, requestOptions)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setHotelData(data);
+    //   });
+    const response = await hotelsApi.getHotels({ input });
+    // .then((elem) => elem.json());
+    console.log('responseの中身　：', response.data);
+    setHotelData(response.data);
   }
 
   return (
