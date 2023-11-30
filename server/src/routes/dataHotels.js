@@ -36,6 +36,7 @@ router.post('/', async (req, res) => {
       //レビューにnullがあるものはバックエンド側で弾く
     });
   console.log('@@@@@@@@@', hotelData);
+  hotelDate = hotelData.filter((elem) => elem.reviewAverage !== null);
   hotelData.sort((a, b) => b.reviewAverage - a.reviewAverage);
   console.log('--------------', hotelData);
   res.status(200).send(hotelData);
