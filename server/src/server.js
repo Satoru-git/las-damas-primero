@@ -29,11 +29,13 @@ const setUpServer = () => {
   app.use('/api/v1', apiRoute);
 
   app.use(
-    express.static(path.join(__dirname, '../../client/las-damas-primero/dist'))
+    express.static(
+      path.join(__dirname, '../../client/team2-client/dist/index.html')
+    )
   );
   app.get('*', (req, res) => {
     res.sendFile(
-      path.join(__dirname, '../../client/las-damas-primero/dist/index.html')
+      path.join(__dirname, '../../client/team2-client/dist/index.html')
     );
   });
 
