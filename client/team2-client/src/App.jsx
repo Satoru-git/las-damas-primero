@@ -4,25 +4,19 @@ import Nav from './Nav';
 import Header from './Header';
 import MainBody from './MainBody';
 import Footer from './Footer';
+import Personal from './Personal';
+import Auth from './Auth';
 
 function App() {
   const [hotelData, setHotelData] = useState([]);
+  const [isAuth, setIsAuth] = useState(false);
   return (
     <>
-      <Header />
-      <Nav setHotelData={setHotelData} />
-      {hotelData.length !== 0 ? (
-        <>
-          <MainBody hotelData={hotelData} />
-        </>
+      {isAuth ? (
+        <Personal hotelData={hotelData} setHotelData={setHotelData} />
       ) : (
-        <>
-          <div>
-            <h1></h1>
-          </div>
-        </>
+        <Auth setIsAuth={setIsAuth} />
       )}
-      <Footer />
     </>
   );
 }

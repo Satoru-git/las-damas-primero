@@ -1,0 +1,28 @@
+.auth__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid aqua;
+}
+.auth__wrap--content {
+  display: flex;
+  margin-top: 10px;
+}
+.auth__wrap--label {
+  width: 150px;
+}
+.auth__wrap--input {
+  width: 200px;
+}
+.auth__wrap--input > input {
+  width: 100%;
+  height: 100%;
+}
+.auth__wrap--btn {
+  margin-top: 10px;
+}
