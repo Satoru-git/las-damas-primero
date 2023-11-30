@@ -21,6 +21,7 @@ const setUpServer = () => {
     session({
       secret: 'your-secret-key2',
       resave: false,
+      saveUninitialized: true,
     })
   );
   app.use(passport.initialize());
