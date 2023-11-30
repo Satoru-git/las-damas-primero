@@ -13,8 +13,8 @@ const BaseURL = {
 
 const axiosClient = axios.create({
   // baseURL: 'http://localhost:8000/api/v1',
-  baseURL: '/api/v1',
-  // baseURL: BaseURL[process.env.NODE_ENV],
+  // baseURL: '/api/v1',
+  baseURL: BaseURL[process.env.NODE_ENV],
 });
 
 export default axiosClient;
