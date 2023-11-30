@@ -1,58 +1,42 @@
 const express = require('express');
-const knex = require('../db');
 const path = require('path');
+const apiRoute = require('./routes');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const session = require('express-session');
 
 const setUpServer = () => {
   const app = express();
+  app.use(cookieParser());
   app.use(express.json());
-  app.use(cors());
   app.use(
-    express.static(path.join(__dirname, '../../client/las-damas-primero/dist'))
+    cors({
+      origin: 'http://localhost:5173',
+      credentials: true,
+    })
   );
+  app.use(express.urlencoded({ extended: true }));
+  app.use(
+    session({
+      secret: 'your-secret-key2',
+      resave: false,
+    })
+  );
+  app.use(passport.initialize());
+  app.use(passport.session());
 
+  app.use('/api/v1', apiRoute);
+
+  app.use(
+    express.static(
+      path.join(__dirname, '../../client/team2-client/dist/index.html')
+    )
+  );
   app.get('*', (req, res) => {
     res.sendFile(
-      path.join(__dirname, '../../client/las-damas-primero/dist/index.html')
+      path.join(__dirname, '../../client/team2-client/dist/index.html')
     );
-  });
-
-  app.get('/data', async (req, res) => {
-    const customerList = await knex('customer').select();
-    res.status(200).send(customerList);
-  });
-
-  app.post('/data', async (req, res) => {
-    console.log(req.body.prefecture);
-    const rakutenApiKey = '1042996976349696385';
-    const hotelData = await fetch(
-      `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${rakutenApiKey}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const hotelArr = data.hotels
-          .map((obj) => obj.hotel)
-          .map((obj) => {
-            const hotelBasicInfo = obj[0].hotelBasicInfo;
-            return {
-              hotelName: hotelBasicInfo.hotelName,
-              hotelImageUrl: hotelBasicInfo.hotelImageUrl,
-              YoutubeUrl: `https://www.youtube.com/results?search_query=${hotelBasicInfo.hotelName}%E3%80%80食事`,
-              hotelMapImageUrl: hotelBasicInfo.hotelMapImageUrl,
-              access: hotelBasicInfo.access,
-              position: {
-                latitude: hotelBasicInfo.latitude * 0.0002778,
-                longitude: hotelBasicInfo.longitude * 0.0002778,
-              },
-            };
-          });
-
-        return hotelArr;
-      });
-
-    res.status(200).send(hotelData);
-    // リクエストされるもの：chekin,people,days
   });
 
   return app;
