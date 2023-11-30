@@ -4,29 +4,30 @@
  */
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
+  await knex('travel').del();
   await knex('customer').del();
   await knex('customer').insert([
     {
-      customer_id: 'takasan',
-      password: 'abc',
+      userName: 'takasan',
+      id: 1,
       salt: 'abc',
       hashed_password: 'takasanabc',
     },
     {
-      customer_id: 'bucchi',
-      password: 'abc',
+      userName: 'bucchi',
+      id: 2,
       salt: 'abc',
       hashed_password: 'bucchiabc',
     },
     {
-      customer_id: 'gonsan',
-      password: 'abc',
+      userName: 'gonsan',
+      id: 3,
       salt: 'abc',
       hashed_password: 'gonsanabc',
     },
     {
-      customer_id: 'kunosan',
-      password: 'abc',
+      userName: 'kunosan',
+      id: 4,
       salt: 'abc',
       hashed_password: 'kunosanabc',
     },

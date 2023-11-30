@@ -1,7 +1,5 @@
 // Update with your config settings.
-require('dotenv').config({
-  path: './.env',
-});
+require('dotenv').config();
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -9,8 +7,8 @@ module.exports = {
   development: {
     client: 'pg',
     connection: {
-      user: process.env.POSTGRES_USER || 'Satoru_OfficePC',
-      database: process.env.POSTGRES_DB || 'las_damas_primero',
+      user: process.env.DB_USER || 'user',
+      database: process.env.DB_NAME || 'las_damas_primero',
     },
     migrations: {
       directory: './migrations',
