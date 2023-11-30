@@ -9,9 +9,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   console.log(req.body.prefecture);
   const rakutenApiKey = '1042996976349696385';
-  const hotelData = await fetch(
-    `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${rakutenApiKey}`
-  )
+  const hotelData = await fetch(`https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${rakutenApiKey}`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -34,7 +32,7 @@ router.post('/', async (req, res) => {
 
       return hotelArr;
     });
-
+  res.setHeader('Content-Type', 'application/json'); // JSONを返す場合の例
   res.status(200).send(hotelData);
   // リクエストされるもの：chekin,people,days
 });
