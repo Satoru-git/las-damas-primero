@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const knex = require('../../db/index.js');
+require('dotenv').config();
 
 router.get('/', async (req, res) => {
   const customerList = await knex('customer').select();
@@ -7,18 +8,20 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log(req.body.prefecture);
-  const rakutenApiKey = '1042996976349696385';
-  const hotelData = await fetch(`https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${rakutenApiKey}`)
+  const hotelData = await fetch(
+    `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${process.env.APP_ID}`
+  )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      console.log(data.hotels[0].hotel[0].hotelBasicInfo.reviewAverage);
       const hotelArr = data.hotels
         .map((obj) => obj.hotel)
         .map((obj) => {
           const hotelBasicInfo = obj[0].hotelBasicInfo;
           return {
             hotelName: hotelBasicInfo.hotelName,
+            hotelNo: hotelBasicInfo.hotelNo,
+            reviewAverage: hotelBasicInfo.reviewAverage,
             hotelImageUrl: hotelBasicInfo.hotelImageUrl,
             YoutubeUrl: `https://www.youtube.com/results?search_query=${hotelBasicInfo.hotelName}%E3%80%80食事`,
             hotelMapImageUrl: hotelBasicInfo.hotelMapImageUrl,
@@ -29,10 +32,12 @@ router.post('/', async (req, res) => {
             },
           };
         });
-
       return hotelArr;
+      //レビューにnullがあるものはバックエンド側で弾く
     });
-  res.setHeader('Content-Type', 'application/json'); // JSONを返す場合の例
+  console.log('@@@@@@@@@', hotelData);
+  hotelData.sort((a, b) => b.reviewAverage - a.reviewAverage);
+  console.log('--------------', hotelData);
   res.status(200).send(hotelData);
   // リクエストされるもの：chekin,people,days
 });
