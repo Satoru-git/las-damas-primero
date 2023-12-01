@@ -73,6 +73,7 @@ passport.use(
   })
 );
 
+//cookieの生成？？
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
