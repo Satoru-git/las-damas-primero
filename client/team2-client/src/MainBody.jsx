@@ -1,3 +1,6 @@
+import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
+import BedIcon from '@mui/icons-material/Bed';
+
 const MainBody = ({ hotelData }) => {
   return (
     <main>

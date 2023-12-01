@@ -3,7 +3,7 @@ import './Auth.css';
 import authApi from './api/authApi';
 
 const Auth = (props) => {
-  const { setIsAuth } = props;
+  const { setIsAuth, setUsername } = props;
   const [authUser, setAuthUser] = useState('');
   const [authPass, setAuthPass] = useState('');
   const [authConfirmPass, setAuthConfirmPass] = useState('');
@@ -15,6 +15,8 @@ const Auth = (props) => {
     console.log('res : ', res.data);
     if (res.data.authenticated) {
       console.log('ここは通ってます');
+      console.log('username', res.data.user);
+      setUsername(res.data.user.username);
       setIsAuth(true);
     } else {
       setIsAuth(false);

@@ -10,6 +10,7 @@ import Auth from './Auth';
 function App() {
   const [hotelData, setHotelData] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
+  const [username, setUsername] = useState('');
   return (
     <>
       {isAuth ? (
@@ -17,9 +18,10 @@ function App() {
           hotelData={hotelData}
           setHotelData={setHotelData}
           setIsAuth={setIsAuth}
+          username={username}
         />
       ) : (
-        <Auth setIsAuth={setIsAuth} />
+        <Auth setIsAuth={setIsAuth} setUsername={setUsername} />
       )}
     </>
   );
