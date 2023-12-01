@@ -59,11 +59,12 @@ const Auth = (props) => {
         const res = await authApi.login(sendData);
         console.log('res : ', res.data);
         if (res.data.message) {
+          console.log('ofadsfadsfasdf');
           checkAuth();
-          return;
+          // return;
         } else {
           window.alert('ユーザー名か、パスワードが違います。');
-          return;
+          // return;
         }
       } catch (err) {
         window.alert(`ユーザー名 or パスワードが違います`);

@@ -18,4 +18,7 @@ router.post(
   authController.login
 );
 
+// ログアウトエンドポイント
+router.get('/logout', authController.logout);
+
 module.exports = router;

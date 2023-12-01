@@ -13,7 +13,11 @@ function App() {
   return (
     <>
       {isAuth ? (
-        <Personal hotelData={hotelData} setHotelData={setHotelData} />
+        <Personal
+          hotelData={hotelData}
+          setHotelData={setHotelData}
+          setIsAuth={setIsAuth}
+        />
       ) : (
         <Auth setIsAuth={setIsAuth} />
       )}
