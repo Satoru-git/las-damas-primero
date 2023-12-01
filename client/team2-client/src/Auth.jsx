@@ -20,6 +20,9 @@ const Auth = (props) => {
       setIsAuth(false);
     }
   };
+  const forceLogin = () => {
+    setIsAuth(true);
+  };
 
   useEffect(() => {
     // console.log('初回マウント時のAuth');
@@ -86,45 +89,51 @@ const Auth = (props) => {
   };
 
   return (
-    <form action="" onSubmit={submitHandler}>
-      <div className="auth__wrap">
-        <div className="auth__wrap--content">
-          <div className="auth__wrap--label">
-            <label htmlFor="">ユーザー名</label>
+    <>
+      <form action="" onSubmit={submitHandler}>
+        <div className="auth__wrap">
+          <div className="auth__wrap--content">
+            <div className="auth__wrap--label">
+              <label htmlFor="">ユーザー名</label>
+            </div>
+            <div className="auth__wrap--input">
+              <input type="text" onChange={changeUser} />
+            </div>
           </div>
-          <div className="auth__wrap--input">
-            <input type="text" onChange={changeUser} />
+          <div className="auth__wrap--content">
+            <div className="auth__wrap--label">
+              <label htmlFor="">パスワード</label>
+            </div>
+            <div className="auth__wrap--input">
+              <input type="password" onChange={changePass} />
+            </div>
+          </div>
+          <div
+            className="auth__wrap--content"
+            style={{ visibility: isLogin ? 'hidden' : 'visible' }}
+          >
+            <div className="auth__wrap--label">
+              <label htmlFor="">パスワード（確認）</label>
+            </div>
+            <div className="auth__wrap--input">
+              <input type="password" onChange={changeConfirmPass} />
+            </div>
+          </div>
+          <div className="auth__wrap--btn">
+            <button>{isLogin ? 'ログイン' : '新規登録'}</button>
+          </div>
+          <div className="auth__wrap--nav">
+            <label htmlFor="" onClick={loginHandler}>
+              {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
+            </label>
           </div>
         </div>
-        <div className="auth__wrap--content">
-          <div className="auth__wrap--label">
-            <label htmlFor="">パスワード</label>
-          </div>
-          <div className="auth__wrap--input">
-            <input type="password" onChange={changePass} />
-          </div>
-        </div>
-        <div
-          className="auth__wrap--content"
-          style={{ visibility: isLogin ? 'hidden' : 'visible' }}
-        >
-          <div className="auth__wrap--label">
-            <label htmlFor="">パスワード（確認）</label>
-          </div>
-          <div className="auth__wrap--input">
-            <input type="password" onChange={changeConfirmPass} />
-          </div>
-        </div>
-        <div className="auth__wrap--btn">
-          <button>{isLogin ? 'ログイン' : '新規登録'}</button>
-        </div>
-        <div className="auth__wrap--nav">
-          <label htmlFor="" onClick={loginHandler}>
-            {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
-          </label>
-        </div>
-      </div>
-    </form>
+      </form>
+      <br />
+      <br />
+      <br />
+      <button onClick={forceLogin}>強制ログイン</button>
+    </>
   );
 };
 
