@@ -9,8 +9,10 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const hotelData = await fetch(
-    `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${process.env.APP_ID}`
+    `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${req.body.input.prefecture}&applicationId=${process.env.APP_ID}`,
+    { credential: 'omit' }
   )
+    //sessionの無効化できるか
     .then((res) => res.json())
     .then((data) => {
       console.log(data.hotels[0].hotel[0].hotelBasicInfo.reviewAverage);
@@ -36,7 +38,7 @@ router.post('/', async (req, res) => {
       //レビューにnullがあるものはバックエンド側で弾く
     });
   console.log('@@@@@@@@@', hotelData);
-  hotelDate = hotelData.filter((elem) => elem.reviewAverage !== null);
+  // hotelDate = hotelData.filter((elem) => elem.reviewAverage !== null);
   hotelData.sort((a, b) => b.reviewAverage - a.reviewAverage);
   console.log('--------------', hotelData);
   res.status(200).send(hotelData);
