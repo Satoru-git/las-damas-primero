@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import hotelsApi from './api/hotelsApi';
 import authApi from './api/authApi';
 import axios from 'axios';
+import stayApi from './api/stayApi';
 
-const Nav = ({ setHotelData, setIsAuth }) => {
+const Nav = ({ setHotelData, setIsAuth, username }) => {
   // const URL =
   //   process.env.NODE_ENV === 'production'
   //     ? '/data'
@@ -45,8 +46,11 @@ const Nav = ({ setHotelData, setIsAuth }) => {
           },
         };
       });
+    hotelArr.sort((a, b) => b.reviewAverage - a.reviewAverage);
     console.log('ryozo-san,shun-sanの涙の結晶 : ', hotelArr);
     // setHotelData(response.data);
+    const stayHistories = await stayApi.getHistories(username);
+    console.log('stayHistories : ', stayHistories);
     setHotelData(hotelArr);
   }
 

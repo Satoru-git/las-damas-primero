@@ -1,10 +1,6 @@
 import axios from 'axios';
-// import dotenv from 'dotenv';
 
-// dotenv.config();
-
-// const urlpath = process.env.NODE_ENV;
-const urlpath = import.meta.env.VITE_NODE_ENV || process.env.NODE_ENV;
+const urlpath = import.meta.env.NODE_ENV || process.env.NODE_ENV;
 console.log('NODE_ENV : ', urlpath);
 
 const BaseURL = {
@@ -17,7 +13,8 @@ const BaseURL = {
 //デプロイ時: endpointまでのパスで良いので "/api/v1"
 
 const axiosClient = axios.create({
-  baseURL: BaseURL[urlpath],
+  // baseURL: BaseURL[urlpath],
+  baseURL: 'api/v1',
 });
 
 export default axiosClient;
