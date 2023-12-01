@@ -14,6 +14,10 @@ const MainBody = ({ hotelData }) => {
                   return (
                     <div className="hotel_name">
                       <h2>{item[key]}</h2>
+                      <div className="reserve_btn">
+                        <button>予約</button>
+                      </div>
+                      <BedOutlinedIcon />
                     </div>
                   );
                 case 'hotelImageUrl':
