@@ -48,10 +48,19 @@ const Nav = ({ setHotelData, setIsAuth, username }) => {
       });
     hotelArr.sort((a, b) => b.reviewAverage - a.reviewAverage);
     console.log('ryozo-san,shun-sanの涙の結晶 : ', hotelArr);
+    const notNullableHotels = hotelArr.filter(
+      (elm) => elm.reviewAverage !== null
+    );
     // setHotelData(response.data);
     const stayHistories = await stayApi.getHistories(username);
     console.log('stayHistories : ', stayHistories);
-    setHotelData(hotelArr);
+    const stayHotelNumbers = stayHistories.data.map((elm) => elm.hotel_no);
+    const newHotelsArray = notNullableHotels.map((elm) => ({
+      hotels: elm,
+      stayed: stayHotelNumbers.includes(elm.hotelNo),
+    }));
+    console.log('newHotelsArray : ', newHotelsArray);
+    setHotelData(newHotelsArray);
   }
 
   const clickLogout = async () => {

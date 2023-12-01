@@ -21,7 +21,7 @@ const Personal = (props) => {
       />
       {hotelData.length !== 0 ? (
         <>
-          <MainBody hotelData={hotelData} />
+          <MainBody hotelData={hotelData} username={username} />
         </>
       ) : (
         <>
