@@ -1,10 +1,8 @@
 # 💐las-damas-primero💐
-DEMO: https://gfp.onrender.com/
+DEMO: https://gfp.onrender.com/  
 <img width="500" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/78196371-3282-4634-a1fc-9976f50d5d87">
 
-バッジ
-プロジェクトのタイトル
-ロゴやバナー画像
+バッジ  プロジェクトのタイトル  ロゴやバナー画像
 プロジェクトの概要説明
 サービスのスクリーンショット画像 or GIFアニメ（デモ）
 目次
