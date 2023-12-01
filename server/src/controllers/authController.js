@@ -89,16 +89,6 @@ passport.deserializeUser((id, done) => {
 
 const passportSignup = passport.authenticate('local-signup');
 
-const logout = (req, res) => {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.json({ message: 'Logout successful' });
-  });
-  res;
-};
-
 const signup = (req, res) => {
   res.json({ message: 'Signup successful' });
 };
@@ -128,6 +118,15 @@ const authController = {
   passportAuth: passport.authenticate('local-login'),
   login: (req, res) => {
     res.json({ message: 'ログイン成功' });
+  },
+  logout: (req, res) => {
+    req.logout(function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.json({ message: 'Logout successful' });
+    });
+    res;
   },
 };
 
