@@ -32,7 +32,7 @@ exports.seed = async function (knex) {
       hashed_password: 'kunosanabc',
     },
     {
-      userName: 'user1',
+      userName: 'メリーゴーランド',
       id: 5,
       salt: 'a1b92z7',
       hashed_password:
