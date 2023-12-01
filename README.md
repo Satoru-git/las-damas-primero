@@ -1,6 +1,6 @@
 # 💐las-damas-primero💐
 参照URL:　https://gfp.onrender.com/
-<img width="1000" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/78196371-3282-4634-a1fc-9976f50d5d87">
+<img width="750" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/78196371-3282-4634-a1fc-9976f50d5d87">
 
 バッジ
 プロジェクトのタイトル
