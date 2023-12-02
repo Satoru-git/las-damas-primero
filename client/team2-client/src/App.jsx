@@ -11,6 +11,8 @@ function App() {
   const [hotelData, setHotelData] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
   const [username, setUsername] = useState('');
+  const [isStayedBtn, setIsStayedBtn] = useState(false);
+
   return (
     <>
       {isAuth ? (
@@ -19,6 +21,8 @@ function App() {
           setHotelData={setHotelData}
           setIsAuth={setIsAuth}
           username={username}
+          isStayedBtn={isStayedBtn}
+          setIsStayedBtn={setIsStayedBtn}
         />
       ) : (
         <Auth setIsAuth={setIsAuth} setUsername={setUsername} />

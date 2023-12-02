@@ -3,8 +3,20 @@ import hotelsApi from './api/hotelsApi';
 import authApi from './api/authApi';
 import axios from 'axios';
 import stayApi from './api/stayApi';
+import './App.css';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Logout from '@mui/icons-material/Logout';
+import SearchIcon from '@mui/icons-material/Search';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
 
-const Nav = ({ setHotelData, setIsAuth, username }) => {
+const Nav = ({
+  setHotelData,
+  setIsAuth,
+  username,
+  isStayedBtn,
+  setIsStayedBtn,
+  setSearchPrefecture,
+}) => {
   // const URL =
   //   process.env.NODE_ENV === 'production'
   //     ? '/data'
@@ -18,7 +30,8 @@ const Nav = ({ setHotelData, setIsAuth, username }) => {
 
   async function handleInput(e) {
     e.preventDefault();
-
+    console.log('input.prefecture: ', input.prefecture);
+    setSearchPrefecture(input.prefecture);
     // const response = await hotelsApi.getHotels({ input });
     // console.log('bucchi-responseの中身　：', response.data);
 
@@ -96,9 +109,12 @@ const Nav = ({ setHotelData, setIsAuth, username }) => {
       });
     console.log('ryozo-san,shun-sanの涙の結晶 : ', hotelArr);
   };
+  const clickHndler = () => {
+    setIsStayedBtn(!isStayedBtn);
+  };
 
   return (
-    <nav>
+    <nav className="nav_wrap">
       <form onSubmit={handleInput}>
         <div>
           <label>CheckIn</label>
@@ -186,12 +202,30 @@ const Nav = ({ setHotelData, setIsAuth, username }) => {
             <option value="沖縄県">沖縄県</option>
           </select>
         </div>
-        <button type="submit" className="btn">
-          検索
+        <button type="submit" className="btn serch_icon">
+          <SearchIcon className="material_serch_icon" />
         </button>
       </form>
-      <button onClick={axiosGogo}>Axiosでフロントから</button>
-      <button onClick={clickLogout}>ログアウト</button>
+      <div className="icon_wrap">
+        <div className="new_btn">
+          <button
+          // onClick={clickHndler}
+          // style={{ backgroundColor: isStayedBtn ? 'red' : '#343434' }}
+          >
+            <FiberNewIcon
+              className="material_new"
+              onClick={clickHndler}
+              style={{ backgroundColor: isStayedBtn ? 'yellow' : '#343434' }}
+            />
+          </button>
+        </div>
+        <div className="username">
+          <button>{username}</button>
+        </div>
+        <div>
+          <Logout onClick={clickLogout} className="material_logout" />
+        </div>
+      </div>
     </nav>
   );
 };
