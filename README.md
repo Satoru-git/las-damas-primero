@@ -1,9 +1,9 @@
 # 💐las-damas-primero💐
 
 ![Static Badge](https://img.shields.io/badge/build-passing-green?style=flat-square)  
-![Static Badge](https://img.shields.io/badge/%E3%80%80SuperPO-nao-green?style=flat-square)
+![Static Badge](https://img.shields.io/badge/SuperPO-nao-lemonchiffon?style=flat-square)
 ![Static Badge](https://img.shields.io/badge/%E3%80%80TL-ryozo-green?style=flat-square&link=https%3A%2F%2Fgithub.com%2Fryozo7)
-![Static Badge](https://img.shields.io/badge/%E3%80%80AmazingDev-oga-green?style=flat-square&link=https%3A%2F%2Fgithub.com%2Fryozo7)
+![Static Badge](https://img.shields.io/badge/%E3%80%80AmazingDev-oga-teal?style=flat-square)
 ![Static Badge](https://img.shields.io/badge/%E3%80%80AmazingDev-syun-deepskyblue?style=flat-square)
 
 
