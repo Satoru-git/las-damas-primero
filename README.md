@@ -1,4 +1,6 @@
-# 💐las-damas-primero💐
+# 💐las-damas-primero💐![Static Badge](https://img.shields.io/badge/build-passing)![Static Badge](https://img.shields.io/badge/build-passing-green?style=flat-square)
+
+
 # < 使い方 > 
 DEMO: https://gfp.onrender.com/  
 1.DEMO:のURLをクリック  
