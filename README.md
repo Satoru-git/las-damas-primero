@@ -1,5 +1,12 @@
 # 💐las-damas-primero💐
+# < 使い方 > 
 DEMO: https://gfp.onrender.com/  
+1.DEMO:のURLをクリック  
+2.ログイン画面でユーザー名、パスワードを入力  
+  ユーザー名:
+  passwword:
+3.宿泊日、人数、宿泊日数を選択し、宿泊地域を選択し「検索」をクリック  
+4.ホテル外観、マップ情報などを確認し、「予約」を押下  
 <img width="400" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/78196371-3282-4634-a1fc-9976f50d5d87">　<img width="400" alt="image" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/ca191109-fcae-47e3-b620-51dc3ec88d1e">
 # < Index > 
 
@@ -69,12 +76,11 @@ NODE_ENV=development
 ```
   1.ヘッダーに表示されている「New +」のボタンをクリック  
   2.「PostgreSQL」を選択  
-  3.作成するデータベースの名称を記入します。 
+  3.作成するデータベースの名称を記入します
   4.入力できたら「Create Database」をクリック  
   5.データベースの作成が始まり、「Status」に「Creating」と表示されます  
   6.Statusが「Available」に変わったらデータベースの作成は完了  
-  7.画面を下にスクロールすると「Internal Database URL」という欄があります。
-  後ほど、ここに記載されているURLが必要になるので、下図のようにアイコンをクリックしてクリップボードにコピーしましょう。
+  7.画面を下にスクロールし「Internal Database URL」をコピー
 ```
 #### < 2.Renderでアプリを新規作成 >
 ```
@@ -89,7 +95,7 @@ NODE_ENV=development
   9.クローンしたリポジトリーをクリック
   10.renderの画面に遷移し、クローンしたリポジトリが表示されるので、「Connect」のボタンをクリック
   11.Name欄にアプリケーションの名称を入力
-  12.アプリのデプロイや起動時のコマンドを入力します。
+  12.アプリのデプロイや起動時のコマンドを入力します
     Branch => main
     Root Directory => ./server
     Build =>　npm run build
@@ -102,12 +108,12 @@ NODE_ENV=development
     NODE_ENV      : production
     VITE_NODE_ENV : production
   15.ターミナルが表示され、デプロイ作業が開始されます
-    デプロイが完了すると、緑色のアイコンで「Live」(画面上部)と表示されたらデプロイ完了！
+    デプロイが完了すると、緑色のアイコンで「Live」(画面上部)と表示されたらデプロイ完了
     画面上部のURLからアプリに接続し、正常に動かすことができるか確認しよう！
 ```
 ### < 今後の計画 >
 - 絞り込み地域の細分化  
-- レビュー点数しか見ていないので、レビュー数と相関した、より信頼性の高い評価ソート
+- レビュー点数しか見ていないので、レビュー数と相関した、より信頼性の高い評価ソート  
   FBお待ちしてます。
 
 
