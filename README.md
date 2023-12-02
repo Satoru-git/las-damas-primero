@@ -35,9 +35,8 @@ It appears that you're struggling with choosing a hotel for your beloved partner
 Can we help? We're suggesting hotels that promise consistently novel experiences and top-notch service.  
 We've gathered details about highly-rated hotels into cards, featuring their exteriors, map specifics,  
 access details, dining facilities, all presented in video format. By marking and adjusting positions,  
-the hotels you haven't visited will always be listed at the top, ensuring a fresh experience each time.a
-
-By utilizing our service, both you and your partner can anticipate consistently delightful experiences.  
+the hotels you haven't visited will always be listed at the top, ensuring a fresh experience each time.　　
+a　By utilizing our service, both you and your partner can anticipate consistently delightful experiences.  
 Your task is simply to select from the options at the top. How about forgoing the hotel selection and  
 instead brainstorming delightful gift ideas while envisioning the joy on your partner's face? 🎁"
 # < Development > 
