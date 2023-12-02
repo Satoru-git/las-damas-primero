@@ -84,6 +84,16 @@ const Auth = (props) => {
           password: authPass,
         };
         console.log('sendData : ', sendData);
+        try {
+          const res = await authApi.signup(sendData);
+          console.log('res : ', res.data);
+          if (res.data.message) {
+            console.log('通ってます。サインアプ');
+            checkAuth();
+          }
+        } catch (err) {
+          window.alert('すでに登録されているユーザー名です。');
+        }
       } else {
         window.alert('パスワードとパスワード（確認）が一致しません');
         return;
@@ -132,10 +142,6 @@ const Auth = (props) => {
           </div>
         </div>
       </form>
-      <br />
-      <br />
-      <br />
-      <button onClick={forceLogin}>強制ログイン</button>
     </>
   );
 };
