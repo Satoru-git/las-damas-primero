@@ -4,18 +4,14 @@ DEMO: https://gfp.onrender.com/
 # < Index > 
 
 # < About >
-あなたはパートナーへのプレゼントを考えましょう
-
-
-パートナーと宿泊するホテルを悩んでいる、選択に時間がかかっている事に困っているそこのあなた。  
-私たちはあなたへ、「常に新しい」大切なパートナーに「最高のサービスを提供してくれる」であろうホテルを提案します。  
-評価の高い
-外観、Map情報、詳細アクセス、施設の食事に関する動画をカードにまとめています。  
+パートナーと宿泊するホテルを悩んでいる、選択に時間がかかっている事に困っているそこのあなた...  
+私たちは、あなたとパートナーに、**「常に新しい」** **「最高のサービス」** を提供してくれるであろうホテルを提案します。    
+評価の高いホテルから降順に外観、Map情報、詳細アクセス、施設の食事に関する動画をカードにまとめています。  
+一度泊まった施設はマーキングと表示位置の変更により、常に泊まったことの無い施設がtopに表示されます。    
+私たちのサービスを使用する事で、あなたをとパートナーは、毎回新鮮で素晴らしい体験が出来るでしょう  
+<br>
 あなたは上から順に選ぶだけです。  
-一度泊まった施設はマーキングと表示位置の変更により、常に泊まったことの無い施設がtopに表示され
-
-
-このサービスを使えば、評価の高い、泊まったことの無い宿泊施設が表示され、パートナー
+もうホテルを選ぶのはやめて、パートナーの喜ぶ顔を思い浮かべながら素敵なプレゼントを考えましょう🎁
 # < Development > 
 Follow this guide to set up your environment etc.
 ### < Database >  
@@ -27,7 +23,6 @@ Create a database called `las_damas_primero`.
 このプロダクトを試用するのは楽天デベロッパーズのアプリIDが必要だよ
 
 アプリID作成用URL　：　https://webservice.rakuten.co.jp/app/create
-
 ### <.env config>
 このプロダクトは.envファイルを使用して環境変数を定義しているよ。
 
@@ -38,9 +33,7 @@ Create a database called `las_damas_primero`.
 2.Create .env file
 
 `$ touch .env`
-
 3.環境変数を記述しよう
-
 ```
 DB_USER="hoge" <= Your command line username
 APP_ID="fuga" <= Your command line あなたの楽天APP_ID
@@ -48,8 +41,6 @@ DB_PASSWORD="hogehoge" <= Your command line password
 DB_NAME=las_damas_primero
 NODE_ENV=development
 ```
-
-
 ### < Downloading and installing steps >  
 1.Clone this repository
 
@@ -70,7 +61,6 @@ NODE_ENV=development
 5.Run the app
 
 `npm run dev`
-
 ### < 使用言語、環境、テクノロジー >
 
 ### < デプロイ方法 >
@@ -115,16 +105,14 @@ NODE_ENV=development
     デプロイが完了すると、緑色のアイコンで「Live」(画面上部)と表示されたらデプロイ完了！
     画面上部のURLからアプリに接続し、正常に動かすことができるか確認しよう！
 ```
+### < 今後の計画 >
+- 絞り込み地域の細分化  
+- レビュー点数しか見ていないので、レビュー数と相関した、より信頼性の高い評価ソート
+  FBお待ちしてます。
 
 
 バッジ  
-
-  
-使用言語、環境、テクノロジー  
 システム構成図  
 使い方  
 こだわりポイント  
 ライセンス情報  
-今後の計画  
-絞り込み地域の細分化
-レビュー点数しか見ていないので、レビュー数と相関したより信頼性の高い評価ソート
