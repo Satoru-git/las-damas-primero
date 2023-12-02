@@ -3,8 +3,8 @@
 DEMO: https://gfp.onrender.com/  
 1.DEMO:のURLをクリック  
 2.ログイン画面でユーザー名、パスワードを入力  
-  ユーザー名:
-  passwword:
+  ユーザー名:  
+  passwword:  
 3.宿泊日、人数、宿泊日数を選択し、宿泊地域を選択し「検索」をクリック  
 4.ホテル外観、マップ情報などを確認し、「予約」を押下  
 <img width="400" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/78196371-3282-4634-a1fc-9976f50d5d87">　<img width="400" alt="image" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/ca191109-fcae-47e3-b620-51dc3ec88d1e">
