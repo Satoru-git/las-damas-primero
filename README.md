@@ -23,7 +23,6 @@ DEMO: https://gfp.onrender.com/
 
 - [About](#about)
 - [Development](#development)
-- [Languages Environments and Technologies](#languages-environments-and-technologies)
 - [How to Deploy](#how-to-Deploy)
 - [Future plans](#future-plans)
 
@@ -96,7 +95,6 @@ NODE_ENV=development
 5.Run the app
 
 `npm run dev`
-# Languages Environments and Technologies
 
 # How to Deploy
 レンダーの場合を説明するよ
