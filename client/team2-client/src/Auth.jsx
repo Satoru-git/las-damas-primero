@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Auth.css';
 import authApi from './api/authApi';
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 
 const Auth = (props) => {
   const { setIsAuth, setUsername } = props;
@@ -132,13 +133,16 @@ const Auth = (props) => {
               <input type="password" onChange={changeConfirmPass} />
             </div>
           </div>
-          <div className="auth__wrap--btn">
-            <button>{isLogin ? 'ログイン' : '新規登録'}</button>
-          </div>
-          <div className="auth__wrap--nav">
-            <label htmlFor="" onClick={loginHandler}>
-              {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
-            </label>
+          <div className="auth__wrap--submit">
+            <div className="auth__wrap--btn">
+              <button>{isLogin ? 'ログイン' : '新規登録'}</button>
+            </div>
+            <div className="auth__wrap--nav" onClick={loginHandler}>
+              <DoubleArrowIcon className="material_arrow" />
+              <label htmlFor="">
+                {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
+              </label>
+            </div>
           </div>
         </div>
       </form>
