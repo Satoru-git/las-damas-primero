@@ -10,7 +10,7 @@
 
 
 
-# < 使い方 > 
+# < How to use > 
 DEMO: https://gfp.onrender.com/  
 1.DEMO:のURLをクリック  
 2.ログイン画面でユーザー名、パスワードを入力  
@@ -46,11 +46,11 @@ This project assumes a Postgres database, naturally, this is not included in the
 
 Create a database called `las_damas_primero`.
 
-### < Rakuten Developers>
+### < Rakuten Developers >
 このプロダクトを試用するのは楽天デベロッパーズのアプリIDが必要だよ
 
 アプリID作成用URL　：　https://webservice.rakuten.co.jp/app/create
-### <.env config>
+### <.env config >
 このプロダクトは.envファイルを使用して環境変数を定義しているよ。
 
 1.Go into the repository
@@ -88,10 +88,9 @@ NODE_ENV=development
 5.Run the app
 
 `npm run dev`
-# < 使用言語、環境、テクノロジー >
-# < こだわりポイント >
+# < Languages, Environments, and Technologies >
 
-# < デプロイ方法 >
+# < How to Deploy >
 レンダーの場合を説明するよ
 ### < 1.Renderでデータベースを作成しよう >
 ```
@@ -132,10 +131,10 @@ NODE_ENV=development
     デプロイが完了すると、緑色のアイコンで「Live」(画面上部)と表示されたらデプロイ完了
     画面上部のURLからアプリに接続し、正常に動かすことができるか確認しよう！
 ```
-# < 今後の計画 >
+# < Future plans >
 - 絞り込み地域の細分化  
-- レビュー点数しか見ていないので、レビュー数と相関した、より信頼性の高い評価ソート  
-  FBお待ちしてます。
+- レビュー点数しか見ていないので、レビュー数と相関した、より信頼性の高い評価ソート
+- 宿泊したことあるホテルリストの追加
 
-システム構成図   
-ライセンス情報  
+
+ライセンス情報？  
