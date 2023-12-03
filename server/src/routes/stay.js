@@ -19,15 +19,13 @@ router.post('/:username', async (req, res) => {
     const userName = req.params.username;
     const hotels = req.body;
     const customerId = await knex
-      .select('customer_id')
+      .select('id')
       .from('customer')
-      .innerJoin('travel', 'customer.id', 'travel.customer_id')
-      .where({ userName: userName })
-      .first();
+      .where({ userName: userName });
     const travelHistory = await {
       hotel_no: hotels.hotel_no,
       hotel_name: hotels.hotel_name,
-      customer_id: customerId.customer_id,
+      customer_id: customerId[0].id,
     };
     await knex('travel').insert(travelHistory);
     await res.status(200).send({ message: 'リスト追加完了しました' });
