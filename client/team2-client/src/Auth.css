@@ -26,3 +26,23 @@
 .auth__wrap--btn {
   margin-top: 10px;
 }
+
+.auth__wrap--submit {
+  width: 100%;
+}
+
+.auth__wrap--nav {
+  margin-top: 50px;
+  margin-left: 230px;
+  display: flex;
+}
+
+.auth__wrap--btn > button {
+  transition: all 0.3s;
+  background-color: rgba(164, 227, 227, 0.865);
+}
+
+.auth__wrap--btn > button:hover {
+  background-color: rgba(104, 233, 233, 0.865);
+  transform: translate(5px, 5px);
+}
