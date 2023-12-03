@@ -10,7 +10,7 @@
 
 
 
-# < How to use > 
+# How to use 
 DEMO: https://gfp.onrender.com/  
 1.DEMO:のURLをクリック  
 2.ログイン画面でユーザー名、パスワードを入力  
@@ -18,10 +18,17 @@ DEMO: https://gfp.onrender.com/
   passwword:  
 3.宿泊日、人数、宿泊日数を選択し、宿泊地域を選択し「検索」をクリック  
 4.ホテル外観、マップ情報などを確認し、「予約」を押下  
-<img width="400" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/78196371-3282-4634-a1fc-9976f50d5d87">　<img width="400" alt="image" src="https://github.com/ryozo7/las-damas-primero/assets/113978510/ca191109-fcae-47e3-b620-51dc3ec88d1e">
-# < Index > 
+<img width="400" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/119465420/3cc990cc-c6f0-4a6e-8ba6-9bcf8c184dcd">　<img width="400" alt="image" src="https://github.com/ryozo7/las-damas-primero/assets/119465420/452ab441-7e32-4e05-87ec-bcf23a479ae2">
+# Index
 
-# < About >
+- [Development](#development)
+
+- [How to use](#how-to-use)
+- [About](#about)
+- [Development](#development)
+
+
+# About
 パートナーと宿泊するホテルを悩んでいる、選択に時間がかかっている事に困っているそこのあなた...  
 私たちは、あなたとパートナーに、**「常に新しい」** **「最高のサービス」** を提供してくれるであろうホテルを提案します。    
 評価の高いホテルから降順に外観、Map情報、詳細アクセス、施設の食事に関する動画をカードにまとめています。  
@@ -39,7 +46,8 @@ the hotels you haven't visited will always be listed at the top, ensuring a fres
 a　By utilizing our service, both you and your partner can anticipate consistently delightful experiences.  
 Your task is simply to select from the options at the top. How about forgoing the hotel selection and  
 instead brainstorming delightful gift ideas while envisioning the joy on your partner's face? 🎁"
-# < Development > 
+
+# Development
 Follow this guide to set up your environment etc.
 ### < Database >  
 This project assumes a Postgres database, naturally, this is not included in the package.json file, so must be installed separately.
@@ -88,7 +96,7 @@ NODE_ENV=development
 5.Run the app
 
 `npm run dev`
-# < Languages, Environments, and Technologies >
+# Languages, Environments, and Technologies
 
 # < How to Deploy >
 レンダーの場合を説明するよ
@@ -135,6 +143,7 @@ NODE_ENV=development
 - 絞り込み地域の細分化  
 - レビュー点数しか見ていないので、レビュー数と相関した、より信頼性の高い評価ソート
 - 宿泊したことあるホテルリストの追加
+
 
 
 ライセンス情報？  
