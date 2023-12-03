@@ -9,7 +9,6 @@ router.get(
   //   }
   authController.checkAuth
 );
-
 // ログイン時のエンドポイント
 router.post(
   '/login',
@@ -17,8 +16,14 @@ router.post(
   authController.passportAuth,
   authController.login
 );
-
 // ログアウトエンドポイント
 router.get('/logout', authController.logout);
+//新規登録用のエンドポイント
+router.post(
+  '/signup',
+  authController.getAllUser,
+  authController.passportSignup,
+  authController.signup
+);
 
 module.exports = router;
