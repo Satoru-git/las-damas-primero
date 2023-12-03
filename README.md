@@ -21,11 +21,11 @@ DEMO: https://gfp.onrender.com/
 <img width="400" alt="スクリーンショット 2023-12-01 18 19 40" src="https://github.com/ryozo7/las-damas-primero/assets/119465420/3cc990cc-c6f0-4a6e-8ba6-9bcf8c184dcd">　<img width="400" alt="image" src="https://github.com/ryozo7/las-damas-primero/assets/119465420/452ab441-7e32-4e05-87ec-bcf23a479ae2">
 # Index
 
-- [Development](#development)
-
-- [How to use](#how-to-use)
 - [About](#about)
 - [Development](#development)
+- [Languages, Environments, and Technologies](#languages)
+- [How to Deploy](#how-to-Deploy)
+- [Future plans](#Future-plans)
 
 
 # About
@@ -98,7 +98,7 @@ NODE_ENV=development
 `npm run dev`
 # Languages, Environments, and Technologies
 
-# < How to Deploy >
+# How to Deploy
 レンダーの場合を説明するよ
 ### < 1.Renderでデータベースを作成しよう >
 ```
