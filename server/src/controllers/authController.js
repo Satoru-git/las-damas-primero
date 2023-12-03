@@ -9,12 +9,7 @@ const enhash = (str) => {
 };
 const enSalt = () => crypto.randomBytes(6).toString('hex');
 
-// let users = [
-//   { userName: 'user1', hashed_password: '1234', id: 1 },
-//   { userName: 'user2', hashed_password: 'abcd', id: 2 },
-// ];
 let users = `[]`;
-
 // Passportの設定
 //local-signup
 passport.use(
@@ -23,20 +18,24 @@ passport.use(
     { passReqToCallback: true },
     async (req, username, password, done) => {
       // 新規登録時にはユーザーの存在チェックなどを行う
-      const existingUser = users.find((u) => u.user_name === username);
+      const existingUser = users.find((u) => u.userName === username);
       if (existingUser) {
         return done(null, false, { message: 'Username already exists.' });
       }
+      const checkID = await knex('customer').select('*').orderBy('id', 'desc');
+      // console.log('maxId : ', checkID);
+      const maxId = checkID[0].id;
 
       const salt = enSalt();
       const hashed = enhash(`${salt}${password}`);
       const createUser = {
-        user_name: username,
+        id: maxId + 1,
+        userName: username,
         salt: salt,
-        hased_password: hashed,
+        hashed_password: hashed,
       };
 
-      const newId = await knex('user_authentification')
+      const newId = await knex('customer')
         .insert(createUser)
         .returning('id')
         .then((elm) => elm[0].id);
@@ -44,9 +43,9 @@ passport.use(
 
       const newUser = {
         id: newId,
-        user_name: username,
+        userName: username,
         salt: salt,
-        hased_password: password,
+        hashed_password: password,
       };
       users.push(newUser);
 
@@ -88,12 +87,6 @@ passport.deserializeUser((id, done) => {
   done(null, sendUser);
 });
 
-const passportSignup = passport.authenticate('local-signup');
-
-const signup = (req, res) => {
-  res.json({ message: 'Signup successful' });
-};
-
 const authController = {
   checkAuth: (req, res) => {
     if (req.isAuthenticated()) {
@@ -120,6 +113,7 @@ const authController = {
   login: (req, res) => {
     res.json({ message: 'ログイン成功' });
   },
+  passportSignup: passport.authenticate('local-signup'),
   logout: (req, res) => {
     req.logout(function (err) {
       if (err) {
@@ -128,6 +122,9 @@ const authController = {
       res.json({ message: 'Logout successful' });
     });
     res;
+  },
+  signup: (req, res) => {
+    res.json({ message: 'Signup successful' });
   },
 };
 
