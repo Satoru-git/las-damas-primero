@@ -88,3 +88,13 @@ button:hover:after {
   width: 100%;
   transition: 800ms ease all;
 }
+
+.auth__wrap--content1 {
+  margin-top: 20px;
+}
+
+.auth__img {
+  width: 100px;
+  height: auto;
+  border-radius: 50px;
+}

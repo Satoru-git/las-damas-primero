@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import './Auth.css';
-import authApi from './api/authApi';
-import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import React, { useEffect, useState } from "react";
+import "./Auth.css";
+import authApi from "./api/authApi";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import img1 from "./assets/Newtral1.png";
+import img2 from "./assets/Newtral2.png";
+import img3 from "./assets/Newtral3.png";
 
 const Auth = (props) => {
   const { setIsAuth, setUsername } = props;
-  const [authUser, setAuthUser] = useState('');
-  const [authPass, setAuthPass] = useState('');
-  const [authConfirmPass, setAuthConfirmPass] = useState('');
+  const [authUser, setAuthUser] = useState("");
+  const [authPass, setAuthPass] = useState("");
+  const [authConfirmPass, setAuthConfirmPass] = useState("");
   const [isLogin, setIsLogin] = useState(true);
 
   const checkAuth = async () => {
-    console.log('checkAuth叩きに行きますz');
+    console.log("checkAuth叩きに行きますz");
     const res = await authApi.checkAuth();
-    console.log('res : ', res.data);
+    console.log("res : ", res.data);
     if (res.data.authenticated) {
-      console.log('ここは通ってます');
-      console.log('username', res.data.user);
+      console.log("ここは通ってます");
+      console.log("username", res.data.user);
       setUsername(res.data.user.username);
       setIsAuth(true);
     } else {
@@ -51,7 +54,7 @@ const Auth = (props) => {
     e.preventDefault();
     if (isLogin) {
       if (!authUser || !authPass) {
-        window.alert('ユーザー名とパスワードを入力してください');
+        window.alert("ユーザー名とパスワードを入力してください");
         return;
       }
       const sendData = {
@@ -60,13 +63,13 @@ const Auth = (props) => {
       };
       try {
         const res = await authApi.login(sendData);
-        console.log('res : ', res.data);
+        console.log("res : ", res.data);
         if (res.data.message) {
-          console.log('ofadsfadsfasdf');
+          console.log("ofadsfadsfasdf");
           checkAuth();
           // return;
         } else {
-          window.alert('ユーザー名か、パスワードが違います。');
+          window.alert("ユーザー名か、パスワードが違います。");
           // return;
         }
       } catch (err) {
@@ -75,7 +78,7 @@ const Auth = (props) => {
     } else {
       if (!authUser || !authPass || !authConfirmPass) {
         window.alert(
-          'ユーザー名とパスワードと確認パスワードを入力してください'
+          "ユーザー名とパスワードと確認パスワードを入力してください"
         );
         return;
       }
@@ -84,19 +87,19 @@ const Auth = (props) => {
           username: authUser,
           password: authPass,
         };
-        console.log('sendData : ', sendData);
+        console.log("sendData : ", sendData);
         try {
           const res = await authApi.signup(sendData);
-          console.log('res : ', res.data);
+          console.log("res : ", res.data);
           if (res.data.message) {
-            console.log('通ってます。サインアプ');
+            console.log("通ってます。サインアプ");
             checkAuth();
           }
         } catch (err) {
-          window.alert('すでに登録されているユーザー名です。');
+          window.alert("すでに登録されているユーザー名です。");
         }
       } else {
-        window.alert('パスワードとパスワード（確認）が一致しません');
+        window.alert("パスワードとパスワード（確認）が一致しません");
         return;
       }
     }
@@ -106,6 +109,9 @@ const Auth = (props) => {
     <>
       <form action="" onSubmit={submitHandler}>
         <div className="auth__wrap">
+          <div className="auth__wrap--content1">
+            <img src={img2} alt="#" className="auth__img" />
+          </div>
           <div className="auth__wrap--content">
             <div className="auth__wrap--label">
               <label htmlFor="">ユーザー名</label>
@@ -124,7 +130,7 @@ const Auth = (props) => {
           </div>
           <div
             className="auth__wrap--content"
-            style={{ visibility: isLogin ? 'hidden' : 'visible' }}
+            style={{ visibility: isLogin ? "hidden" : "visible" }}
           >
             <div className="auth__wrap--label">
               <label htmlFor="">パスワード（確認）</label>
@@ -135,12 +141,12 @@ const Auth = (props) => {
           </div>
           <div className="auth__wrap--submit">
             <div className="auth__wrap--btn">
-              <button>{isLogin ? 'ログイン' : '新規登録'}</button>
+              <button>{isLogin ? "ログイン" : "新規登録"}</button>
             </div>
             <div className="auth__wrap--nav" onClick={loginHandler}>
               <DoubleArrowIcon className="material_arrow" />
               <label htmlFor="">
-                {isLogin ? '新規登録はこちら' : 'ログインはこちら'}
+                {isLogin ? "新規登録はこちら" : "ログインはこちら"}
               </label>
             </div>
           </div>
