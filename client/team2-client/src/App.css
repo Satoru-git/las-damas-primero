@@ -110,9 +110,9 @@ form {
 .hotel_card {
   display: grid;
   grid-template-areas:
-    'idx hotelName hotelName youtubeUrl youtubeUrl'
-    'idx hotelImage hotelImage position hotelMapImage'
-    'idx access access access access';
+    "idx hotelName hotelName youtubeUrl youtubeUrl"
+    "idx hotelImage hotelImage position hotelMapImage"
+    "idx access access access access";
   /* background-color: rgba(52, 52, 52, 0.541);
   background-color: rgba(168, 166, 166, 0.516); */
   margin: 1rem;
@@ -239,7 +239,7 @@ form {
 .icon_wrap {
   display: flex;
   align-items: center;
-  margin-left: 150px;
+  margin-left: 50px;
   margin-top: 10px;
 }
 
@@ -256,7 +256,7 @@ form {
 .username {
   font-weight: bold;
   font-size: 20px;
-  margin-right: 150px;
+  margin-right: 70px;
   margin-left: 50px;
 }
 

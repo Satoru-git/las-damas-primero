@@ -110,7 +110,7 @@ const Auth = (props) => {
       <form action="" onSubmit={submitHandler}>
         <div className="auth__wrap">
           <div className="auth__wrap--content1">
-            <img src={img2} alt="#" className="auth__img" />
+            <img src={img1} alt="#" className="auth__img" />
           </div>
           <div className="auth__wrap--content">
             <div className="auth__wrap--label">

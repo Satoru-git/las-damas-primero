@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 // import './App.css';
 
 const Header = (props) => {
@@ -10,7 +10,7 @@ const Header = (props) => {
   return (
     <>
       <header className="header">
-        <a href="/">Las Damas Primero</a>
+        <a href="/">Newtral</a>
         {/* <div className="header__btn">
           <button
             onClick={clickHndler}
