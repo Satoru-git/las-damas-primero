@@ -21,23 +21,21 @@ const setUpServer = () => {
     session({
       secret: 'your-secret-key2',
       resave: false,
+      saveUninitialized: true,
     })
   );
   app.use(passport.initialize());
   app.use(passport.session());
-
-  app.use('/api/v1', apiRoute);
-
   app.use(
-    express.static(
-      path.join(__dirname, '../../client/team2-client/dist/index.html')
-    )
+    express.static(path.join(__dirname, '../../client/team2-client/dist'))
   );
-  app.get('*', (req, res) => {
-    res.sendFile(
-      path.join(__dirname, '../../client/team2-client/dist/index.html')
-    );
-  });
+
+  // app.get('*', (req, res) => {
+  //   res.sendFile(
+  //     path.join(__dirname, '../../client/team2-client/dist/index.html')
+  //   );
+  // });
+  app.use('/api/v1', apiRoute);
 
   return app;
 };

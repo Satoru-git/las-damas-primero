@@ -31,5 +31,12 @@ exports.seed = async function (knex) {
       salt: 'abc',
       hashed_password: 'kunosanabc',
     },
+    {
+      userName: 'メリーゴーランド',
+      id: 5,
+      salt: 'a1b92z7',
+      hashed_password:
+        '41daafda9a68bcbbe970606097cc1c3155603210cadd4a0799527c1cc3427c46',
+    },
   ]);
 };

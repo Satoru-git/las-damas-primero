@@ -9,6 +9,7 @@ const enhash = (str) => {
 };
 const enSalt = () => crypto.randomBytes(6).toString('hex');
 
+let users = `[]`;
 // Passportの設定
 //local-signup
 passport.use(
@@ -17,20 +18,24 @@ passport.use(
     { passReqToCallback: true },
     async (req, username, password, done) => {
       // 新規登録時にはユーザーの存在チェックなどを行う
-      const existingUser = users.find((u) => u.user_name === username);
+      const existingUser = users.find((u) => u.userName === username);
       if (existingUser) {
         return done(null, false, { message: 'Username already exists.' });
       }
+      const checkID = await knex('customer').select('*').orderBy('id', 'desc');
+      // console.log('maxId : ', checkID);
+      const maxId = checkID[0].id;
 
       const salt = enSalt();
       const hashed = enhash(`${salt}${password}`);
       const createUser = {
-        user_name: username,
+        id: maxId + 1,
+        userName: username,
         salt: salt,
-        hased_password: hashed,
+        hashed_password: hashed,
       };
 
-      const newId = await knex('user_authentification')
+      const newId = await knex('customer')
         .insert(createUser)
         .returning('id')
         .then((elm) => elm[0].id);
@@ -38,9 +43,9 @@ passport.use(
 
       const newUser = {
         id: newId,
-        user_name: username,
+        userName: username,
         salt: salt,
-        hased_password: password,
+        hashed_password: password,
       };
       users.push(newUser);
 
@@ -55,8 +60,9 @@ passport.use(
   new LocalStrategy((username, password, done) => {
     const user = users.find(
       (u) =>
-        u.user_name === username &&
-        u.hased_password === enhash(`${u.salt}${password}`)
+        u.userName === username &&
+        // u.hashed_password === password
+        u.hashed_password === enhash(`${u.salt}${password}`)
     );
     if (user) {
       return done(null, user);
@@ -66,6 +72,7 @@ passport.use(
   })
 );
 
+//cookieの生成？？
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -74,61 +81,51 @@ passport.deserializeUser((id, done) => {
   //cookie情報を入れる際に返却するuser情報。ソルト化されたPWなどは落とすようにする。
   const user = users.find((u) => u.id === id);
   const sendUser = {
-    id: user.id,
-    user_name: user.user_name,
+    // id: user.id,
+    userName: user.userName,
   };
   done(null, sendUser);
 });
-const passportAuth = passport.authenticate('local-login');
-const passportSignup = passport.authenticate('local-signup');
-
-let users = [];
-const getAllUser = async (req, res, next) => {
-  try {
-    const tempUsers = await knex
-      .select('*')
-      .from('user_authentification')
-      .orderBy('id');
-
-    users = tempUsers;
-    next();
-  } catch (err) {
-    console.log(`err : ${err}`);
-  }
-};
-
-const login = (req, res) => {
-  res.json({ message: 'Login successful' });
-};
-
-const checkAuth = (req, res) => {
-  if (req.isAuthenticated()) {
-    res.json({
-      authenticated: true,
-      user: { id: req.user.id, username: req.user.user_name },
-    });
-  } else {
-    res.json({ authenticated: false });
-  }
-};
-
-const logout = (req, res) => {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.json({ message: 'Logout successful' });
-  });
-  res;
-};
-
-const signup = (req, res) => {
-  res.json({ message: 'Signup successful' });
-};
 
 const authController = {
-  getAll: (req, res) => {},
-  getOne: (req, res) => {},
+  checkAuth: (req, res) => {
+    if (req.isAuthenticated()) {
+      console.log('req.user :', req.user);
+      res.json({
+        authenticated: true,
+        user: { username: req.user.userName },
+      });
+    } else {
+      console.log('checkauthだめだよ :', req.user);
+      res.json({ authenticated: false });
+    }
+  },
+  getAllUser: async (req, res, next) => {
+    try {
+      const tempUsers = await knex.select('*').from('customer').orderBy('id');
+      users = tempUsers;
+      next();
+    } catch (err) {
+      console.log(`err : ${err}`);
+    }
+  },
+  passportAuth: passport.authenticate('local-login'),
+  login: (req, res) => {
+    res.json({ message: 'ログイン成功' });
+  },
+  passportSignup: passport.authenticate('local-signup'),
+  logout: (req, res) => {
+    req.logout(function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.json({ message: 'Logout successful' });
+    });
+    res;
+  },
+  signup: (req, res) => {
+    res.json({ message: 'Signup successful' });
+  },
 };
 
 module.exports = authController;

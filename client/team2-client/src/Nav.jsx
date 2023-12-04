@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
 import hotelsApi from './api/hotelsApi';
+import authApi from './api/authApi';
+import axios from 'axios';
+import stayApi from './api/stayApi';
+import './App.css';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Logout from '@mui/icons-material/Logout';
+import SearchIcon from '@mui/icons-material/Search';
+import FiberNewIcon from '@mui/icons-material/FiberNew';
 
-const Nav = ({ setHotelData }) => {
+const Nav = ({
+  setHotelData,
+  setIsAuth,
+  username,
+  isStayedBtn,
+  setIsStayedBtn,
+  setSearchPrefecture,
+}) => {
   // const URL =
   //   process.env.NODE_ENV === 'production'
   //     ? '/data'
@@ -15,26 +30,91 @@ const Nav = ({ setHotelData }) => {
 
   async function handleInput(e) {
     e.preventDefault();
-    // console.log(input);
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ input }),
-    // };
-    // fetch(URL, requestOptions)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setHotelData(data);
-    //   });
-    const response = await hotelsApi.getHotels({ input });
-    // .then((elem) => elem.json());
-    console.log('responseの中身　：', response.data);
-    setHotelData(response.data);
+    console.log('input.prefecture: ', input.prefecture);
+    setSearchPrefecture(input.prefecture);
+    // const response = await hotelsApi.getHotels({ input });
+    // console.log('bucchi-responseの中身　：', response.data);
+
+    const res = await axios.get(
+      `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${
+        input.prefecture
+      }&applicationId=${import.meta.env.VITE_APP_ID}`
+    );
+    // console.log('res : ', res);
+    const hotelArr = res.data.hotels
+      .map((obj) => obj.hotel)
+      .map((obj) => {
+        const hotelBasicInfo = obj[0].hotelBasicInfo;
+        return {
+          hotelName: hotelBasicInfo.hotelName,
+          hotelNo: hotelBasicInfo.hotelNo,
+          reviewAverage: hotelBasicInfo.reviewAverage,
+          hotelImageUrl: hotelBasicInfo.hotelImageUrl,
+          YoutubeUrl: `https://www.youtube.com/results?search_query=${hotelBasicInfo.hotelName}%E3%80%80食事`,
+          hotelMapImageUrl: hotelBasicInfo.hotelMapImageUrl,
+          access: hotelBasicInfo.access,
+          position: {
+            latitude: hotelBasicInfo.latitude * 0.0002778,
+            longitude: hotelBasicInfo.longitude * 0.0002778,
+          },
+        };
+      });
+    hotelArr.sort((a, b) => b.reviewAverage - a.reviewAverage);
+    console.log('ryozo-san,shun-sanの涙の結晶 : ', hotelArr);
+    const notNullableHotels = hotelArr.filter(
+      (elm) => elm.reviewAverage !== null
+    );
+    // setHotelData(response.data);
+    const stayHistories = await stayApi.getHistories(username);
+    console.log('stayHistories : ', stayHistories);
+    const stayHotelNumbers = stayHistories.data.map((elm) => elm.hotel_no);
+    const newHotelsArray = notNullableHotels.map((elm) => ({
+      hotels: elm,
+      stayed: stayHotelNumbers.includes(elm.hotelNo),
+    }));
+    console.log('newHotelsArray : ', newHotelsArray);
+    setHotelData(newHotelsArray);
   }
 
+  const clickLogout = async () => {
+    const res = await authApi.logout();
+    if (res.data.message === 'Logout successful') {
+      setIsAuth(false);
+    }
+  };
+  const axiosGogo = async () => {
+    const res = await axios.get(
+      `https://app.rakuten.co.jp/services/api/Travel/KeywordHotelSearch/20170426?format=json&keyword=${
+        input.prefecture
+      }&applicationId=${import.meta.env.VITE_APP_ID}`
+    );
+    console.log('res : ', res);
+    const hotelArr = res.data.hotels
+      .map((obj) => obj.hotel)
+      .map((obj) => {
+        const hotelBasicInfo = obj[0].hotelBasicInfo;
+        return {
+          hotelName: hotelBasicInfo.hotelName,
+          hotelNo: hotelBasicInfo.hotelNo,
+          reviewAverage: hotelBasicInfo.reviewAverage,
+          hotelImageUrl: hotelBasicInfo.hotelImageUrl,
+          YoutubeUrl: `https://www.youtube.com/results?search_query=${hotelBasicInfo.hotelName}%E3%80%80食事`,
+          hotelMapImageUrl: hotelBasicInfo.hotelMapImageUrl,
+          access: hotelBasicInfo.access,
+          position: {
+            latitude: hotelBasicInfo.latitude * 0.0002778,
+            longitude: hotelBasicInfo.longitude * 0.0002778,
+          },
+        };
+      });
+    console.log('ryozo-san,shun-sanの涙の結晶 : ', hotelArr);
+  };
+  const clickHndler = () => {
+    setIsStayedBtn(!isStayedBtn);
+  };
+
   return (
-    <nav>
+    <nav className="nav_wrap">
       <form onSubmit={handleInput}>
         <div>
           <label>CheckIn</label>
@@ -122,10 +202,30 @@ const Nav = ({ setHotelData }) => {
             <option value="沖縄県">沖縄県</option>
           </select>
         </div>
-        <button type="submit" className="btn">
-          検索
+        <button type="submit" className="btn serch_icon">
+          <SearchIcon className="material_serch_icon" />
         </button>
       </form>
+      <div className="icon_wrap">
+        <div className="new_btn">
+          <button
+          // onClick={clickHndler}
+          // style={{ backgroundColor: isStayedBtn ? 'red' : '#343434' }}
+          >
+            <FiberNewIcon
+              className="material_new"
+              onClick={clickHndler}
+              style={{ backgroundColor: isStayedBtn ? 'yellow' : '#343434' }}
+            />
+          </button>
+        </div>
+        <div className="username">
+          <button>{username}</button>
+        </div>
+        <div>
+          <Logout onClick={clickLogout} className="material_logout" />
+        </div>
+      </div>
     </nav>
   );
 };
